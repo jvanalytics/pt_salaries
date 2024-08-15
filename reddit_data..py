@@ -1,9 +1,17 @@
 import praw
 import pandas as pd
+import json
+
+try:
+    with open('auth.json', 'r') as f:
+        # Load the JSON data from the file
+        credentials = json.load(f)
+except FileNotFoundError:
+    print("Error: auth.json file not found!")
 
 
 reddit = praw.Reddit(
-    client_id="YOUR_CLIENT_ID",
+    client_id=credentials['client_id']
     client_secret="YOUR_SECRET_KEY",
     password="<PASSWORD>",
     user_agent="<user-agent>",
